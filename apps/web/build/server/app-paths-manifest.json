@@ -1,0 +1,12 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/artists/page": "app/artists/page.js",
+  "/checkout/[slug]/page": "app/checkout/[slug]/page.js",
+  "/about/page": "app/about/page.js",
+  "/event/[slug]/page": "app/event/[slug]/page.js",
+  "/events/page": "app/events/page.js",
+  "/page": "app/page.js",
+  "/music/page": "app/music/page.js",
+  "/sports/page": "app/sports/page.js",
+  "/success/[slug]/page": "app/success/[slug]/page.js"
+}
