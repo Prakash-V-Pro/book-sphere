@@ -1,4 +1,4 @@
-import type { Banner, Event, EventSection, GlobalConfig, RecommendationRule, TierRule } from "@shared/types";
+import type { Banner, Event, EventSection, GlobalConfig, RecommendationRule, SeatMap, TierRule } from "@shared/types";
 
 const API_KEY = process.env.CONTENTSTACK_API_KEY;
 const DELIVERY_TOKEN = process.env.CONTENTSTACK_DELIVERY_TOKEN;
@@ -251,8 +251,11 @@ function mapGlobalConfig(raw: Record<string, unknown>): GlobalConfig {
 }
 
 function mapTierRule(raw: Record<string, unknown>): TierRule {
+  const key = pickField<string>(raw, "key", "key");
+  const safeKey: TierRule["key"] =
+    key === "tier1" || key === "tier2" || key === "normal" ? key : "normal";
   return {
-    key: pickField<string>(raw, "key", "key") ?? "normal",
+    key: safeKey,
     label: pickField<string>(raw, "label", "label") ?? "Member",
     maxTickets: pickField<number>(raw, "maxTickets", "max_tickets") ?? 9
   };
@@ -276,8 +279,8 @@ function mapEvent(raw: Record<string, unknown>): Event {
     {};
 
   const gallery = (pickField(raw, "gallery", "gallery") as RawAsset[] | undefined)
-    ?.map((asset) => ({ url: asset.url ?? "", title: asset.title ?? "Asset" }))
-    .filter((asset) => Boolean(asset.url));
+    ?.map((asset) => mapAsset(asset))
+    .filter((asset): asset is { url: string; title: string } => Boolean(asset?.url));
   const banner = mapAsset(pickField(raw, "banner", "banner")) ?? gallery?.[0];
 
   return {
@@ -449,8 +452,10 @@ export async function getEventSections(): Promise<EventSection[]> {
   }
 
   try {
-    const response = await fetchContentstack<{ entries: EventSection[] }>("/content_types/event_section/entries");
-    const sections = response.entries.map((entry) => mapEventSection(entry as Record<string, unknown>));
+    const response = await fetchContentstack<{ entries: Record<string, unknown>[] }>(
+      "/content_types/event_section/entries"
+    );
+    const sections = response.entries.map((entry) => mapEventSection(entry));
     return sections.length ? sections : mockSections;
   } catch {
     return mockSections;

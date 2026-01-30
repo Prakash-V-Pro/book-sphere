@@ -6,7 +6,7 @@ interface BookingFormProps {
   tiers: TierRule[];
   tickets: number;
   tier: string;
-  onTierChange: (value: string) => void;
+  onTierChange: (value: TierRule["key"]) => void;
   onTicketsChange: (value: number) => void;
   eventSlug: string;
   selectedZoneId: string;
@@ -60,7 +60,7 @@ export function BookingForm({
         id="tierSelect"
         className="input-base mt-2"
         value={tier}
-        onChange={(event) => onTierChange(event.target.value)}
+        onChange={(event) => onTierChange(event.target.value as TierRule["key"])}
       >
         {tiers.map((item) => (
           <option key={item.key} value={item.key}>
