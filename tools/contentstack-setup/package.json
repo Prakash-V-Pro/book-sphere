@@ -1,0 +1,16 @@
+{
+  "name": "booksphere-contentstack-setup",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "create-models": "node create-models.js",
+    "upload-assets": "node upload-assets.js",
+    "create-entries": "node create-entries.js",
+    "attach-assets": "node attach-assets.js"
+  },
+  "dependencies": {
+    "@contentstack/management": "latest",
+    "dotenv": "16.4.5"
+  }
+}
+

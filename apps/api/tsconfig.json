@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2021",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "../../",
+    "rootDirs": ["./src", "../../packages/shared/src"],
+    "baseUrl": "./",
+    "paths": {
+      "@shared/*": ["../../packages/shared/src/*"]
+    },
+    "incremental": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src", "../../packages/shared/src"]
+}
+

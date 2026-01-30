@@ -1,0 +1,50 @@
+{
+  "GlobalConfig": {
+    "geoIpEndpoint": "https://ipapi.co/json/",
+    "paymentGateways": ["Card", "UPI", "NetBanking", "Wallet"],
+    "featureFlags": { "parking": true, "discounts": true, "recommendations": true }
+  },
+  "TierRule": [
+    { "key": "tier1", "label": "Platinum Pulse", "maxTickets": 25 },
+    { "key": "tier2", "label": "Golden Groove", "maxTickets": 14 },
+    { "key": "normal", "label": "Rhythm Access", "maxTickets": 9 }
+  ],
+  "SeatMap": {
+    "title": "Concert_Default",
+    "orientation": "stage_top",
+    "zones": [
+      { "id": "vip", "label": "VIP", "distanceFactor": 0.2, "basePrice": 240, "rows": 4, "cols": 8 },
+      { "id": "gold", "label": "Gold", "distanceFactor": 0.5, "basePrice": 180, "rows": 6, "cols": 10 },
+      { "id": "silver", "label": "Silver", "distanceFactor": 0.9, "basePrice": 120, "rows": 8, "cols": 12 }
+    ]
+  },
+  "Event": {
+    "title": "RockWave Live 2026",
+    "slug": "rockwave-2026",
+    "type": "concert",
+    "currency": "USD",
+    "schedule": {
+      "startAt": "2026-02-18T20:00:00Z",
+      "bookingOpensAt": "2026-02-18T10:00:00Z"
+    },
+    "venue": {
+      "name": "Aurora Dome",
+      "address": "12 Horizon Ave",
+      "city": "Austin",
+      "country": "USA",
+      "location": { "lat": 30.2672, "lng": -97.7431 }
+    },
+    "tags": ["rock", "live", "featured"],
+    "isPromoted": true,
+    "basePrice": 240,
+    "priceCurve": "decrease_with_distance",
+    "parkingAvailable": true
+  },
+  "Banner": {
+    "title": "Concerts that feel cinematic",
+    "subtitle": "Book premium seats before they sell out",
+    "image": { "url": "https://images.contentstack.io/v3/assets/mock/hero-1.jpg", "title": "Concert hero" },
+    "link": "/event/rockwave-2026"
+  }
+}
+
