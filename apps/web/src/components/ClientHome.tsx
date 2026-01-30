@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { Banner, Event, EventSection, GlobalConfig, RecommendationRule } from "@shared/types";
+import type { Banner, Event, EventSection as EventSectionType, GlobalConfig, RecommendationRule } from "@shared/types";
 import type { GeoCountry } from "../lib/geo";
 import { BannerCarousel } from "./BannerCarousel";
 import { EventSection } from "./EventSection";
@@ -12,7 +12,7 @@ interface ClientHomeProps {
   config: GlobalConfig;
   geoCountry: GeoCountry;
   recommendations: RecommendationRule[];
-  sections: EventSection[];
+  sections: EventSectionType[];
 }
 
 export function ClientHome({ banners, events, config, geoCountry, recommendations, sections }: ClientHomeProps) {
